@@ -1,4 +1,4 @@
-This is a command line yahtzee game that I made some time when I was bored probably during covid.
+This is a command line yahtzee game that I made some time when I was bored, probably during covid.
 
 The game will prompt for 2 names then play. Enter AI as a name to play against AI (the AI is just random and terrible). 
 
