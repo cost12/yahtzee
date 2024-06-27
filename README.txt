@@ -10,4 +10,9 @@ print dice - print the current state of the dice
 print score - print the current player's score card
 ones, twos, threes, fours, fives, sixes, 3k, 4k, fh, ss, ls, chance, yahtzee - end your turn and score the roll
 
-There are still a couple errors, the end condition isn't checked appropriately which can cause some games to never end. You can also always assign a roll to yahtzee with no consequences.
+Command line arguments: 
+First argument is the number of players: default 2
+Second argument is the number of di: default 5
+Third argumnent is the number of rolls per turn: default 3
+
+Note: changing the number of di changes how some categories are calculated

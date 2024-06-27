@@ -47,8 +47,10 @@ int main(int argc, char* argv[]) {
   }
   
   while (!all_done(players, num_players)) {
-  	std::cout << "Your turn, " << players[turn]->get_name() << std::endl;
-    players[turn]->take_turn();
+    if (players[turn]->moves_left() != 0) {
+      std::cout << "Your turn, " << players[turn]->get_name() << std::endl;
+      players[turn]->take_turn();
+    }
     ++turn;
     turn %= num_players;
   }

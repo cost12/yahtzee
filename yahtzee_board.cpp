@@ -17,6 +17,7 @@ yahtzee_board::yahtzee_board() {
   large_strait = false;
   chance = 0;
   yahtzees = 0;
+  yahtzee_open = true;
 }
 
 int yahtzee_board::total_sum() const {
@@ -186,8 +187,13 @@ bool yahtzee_board::add_move(const std::string &type, const std::vector<int> &d)
 			return true;
 		}
 	} else if (type == "yahtzee") {
-		if ( !(bottom_filled[6] && yahtzees == 0) ) {
-			yahtzees += n_of_a_kind(dice, 5);
+		bool is_yahtzee = n_of_a_kind(dice, 5);
+		if (yahtzee_open && (yahtzees == 0 || is_yahtzee)) {
+			if (is_yahtzee) {
+				yahtzees += 1;
+			} else {
+				yahtzee_open = false;
+			}
 			bottom_filled[6] = true;
 			return true;
 		}
@@ -220,13 +226,13 @@ void yahtzee_board::print() {
 			if (bonus()) {
 				std::cout << categories[i] << "\t\t" << "35" << std::endl;
 			} else {
-				std::cout << categories[i] << "\t\t" << "XX" << std::endl;
+				std::cout << categories[i] << "\t\t" << " 0" << std::endl;
 			}
 		} else if (i == 7) {
 			std::cout << categories[i] << "\t\t" << top_sum() + 35*bonus() << std::endl;
 		} else if (i < 15) {
 			int bottom[7] = {three_of_a_kind, four_of_a_kind, full_house*25, small_strait*30, large_strait*40, chance, yahtzees*50};
-			if (yahtzees > 1) { bottom[i] += 50*(yahtzees - 1); }
+			if (yahtzees > 1) { bottom[6] += 50*(yahtzees - 1); }
 			if (bottom_filled[i-8]) {
 				std::cout << categories[i] << "\t" << bottom[i-8] << std::endl;
 			} else {

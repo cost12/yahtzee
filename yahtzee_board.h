@@ -30,6 +30,7 @@ private:
   bool large_strait;
   int chance;
   int yahtzees;
+  bool yahtzee_open;
 };
 
 #endif
